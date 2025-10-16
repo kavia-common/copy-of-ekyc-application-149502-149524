@@ -1,0 +1,126 @@
+.root {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  min-height: 100vh;
+  background: var(--color-white);
+  color: var(--text-on-white);
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  background: var(--color-navy);
+  color: var(--text-on-navy);
+  padding: 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 20;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 8px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+.brandTitle {
+  color: var(--text-on-navy);
+  font-size: 16px;
+  margin: 0;
+}
+.nav {
+  margin-top: 4px;
+}
+.navGroup {
+  display: grid;
+  gap: 4px;
+}
+.navHeader {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  margin: 8px 8px 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+.footer {
+  margin-top: auto;
+  font-size: 12px;
+  color: rgba(255,255,255,0.65);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 10px;
+}
+
+.headerMobile {
+  display: none;
+}
+
+.content {
+  min-width: 0;
+  padding: 24px;
+  box-sizing: border-box;
+  background: var(--color-white);
+  color: var(--text-on-white);
+}
+
+.toggleBtn {
+  background: var(--color-navy);
+  color: var(--text-on-navy);
+  border: 1px solid var(--color-navy-900);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.toggleBtn:focus {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* Collapsed styles */
+.collapsed {
+  grid-template-columns: var(--sidebar-width-collapsed) 1fr;
+}
+.sidebarCollapsed .brandTitle,
+.sidebarCollapsed .navHeader,
+.sidebarCollapsed .linkText {
+  display: none;
+}
+
+/* Mobile behavior */
+@media (max-width: 768px) {
+  .root, .collapsed {
+    grid-template-columns: 1fr;
+  }
+  .headerMobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: var(--color-navy);
+    color: var(--text-on-navy);
+    padding: 10px 12px;
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 48px; /* below mobile header */
+    height: calc(100vh - 48px);
+    width: 240px;
+    transform: translateX(-110%);
+    transition: transform 0.2s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+  .sidebarOpen {
+    transform: translateX(0);
+  }
+  .content {
+    padding: 16px;
+  }
+}

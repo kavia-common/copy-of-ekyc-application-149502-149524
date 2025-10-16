@@ -1,0 +1,108 @@
+:root {
+  --color-navy: #0B1F3A;
+  --color-navy-700: #0A1A31;
+  --color-navy-900: #071425;
+  --color-white: #ffffff;
+  --color-accent: #E87A41;
+
+  --text-on-navy: #ffffff;
+  --text-on-white: #0B1F3A;
+
+  --radius: 8px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --focus-ring: 0 0 0 3px rgba(232,122,65,0.45);
+
+  --sidebar-width: 240px;
+  --sidebar-width-collapsed: 64px;
+  --breakpoint-mobile: 768px;
+
+  --border-subtle: rgba(255,255,255,0.15);
+  --border-plain: #e5e7eb;
+}
+
+/* Global resets and base typography */
+html, body, #root {
+  height: 100%;
+}
+body {
+  background: var(--color-white);
+  color: var(--text-on-white);
+}
+
+/* Skip to content accessibility link */
+.skip-to-content {
+  position: absolute;
+  left: -999px;
+  top: -999px;
+  background: #FFD54F;
+  color: #000;
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: var(--radius);
+  z-index: 10000;
+}
+.skip-to-content:focus {
+  left: var(--spacing-4);
+  top: var(--spacing-4);
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* Basic button style (theme-consistent) */
+.btn-primary {
+  background: var(--color-navy);
+  color: var(--color-white);
+  border: 1px solid var(--color-navy-900);
+  padding: var(--spacing-3) var(--spacing-5);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.btn-primary:focus {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Standard form layout helpers */
+.form-section {
+  background: var(--color-white);
+  color: var(--text-on-white);
+  padding: var(--spacing-6);
+  max-width: 780px;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-4);
+}
+.form-heading {
+  margin-top: 0;
+  color: var(--text-on-white);
+}
+.input-base {
+  padding: var(--spacing-3);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-plain);
+  min-width: 260px;
+}
+.input-base:focus {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.label-base {
+  display: block;
+  margin-bottom: var(--spacing-2);
+  font-weight: 600;
+  color: var(--text-on-white);
+}
+.help-text {
+  font-size: 12px;
+  color: #4b5563;
+}

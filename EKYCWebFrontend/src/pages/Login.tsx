@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { Input } from '../components/Form/Input';
 import { loginUser } from '../services/api';
 
-// PUBLIC_INTERFACE
+/**
+ * PUBLIC_INTERFACE
+ */
 export default function Login(): React.ReactElement {
   /** Login page: accepts identifier (email/mobile) and password; uses loginUser API. */
   const [identifier, setIdentifier] = useState('');
@@ -38,9 +40,9 @@ export default function Login(): React.ReactElement {
   };
 
   return (
-    <section aria-labelledby="login-title" style={{ padding: 24 }}>
-      <h1 id="login-title">Login</h1>
-      <form onSubmit={onSubmit} noValidate>
+    <section aria-labelledby="login-title" className="form-section">
+      <h1 id="login-title" className="form-heading">Login</h1>
+      <form onSubmit={onSubmit} className="form-grid" noValidate>
         <Input
           id="identifier"
           label="Email or Mobile"
@@ -58,13 +60,13 @@ export default function Login(): React.ReactElement {
           type="password"
           required
         />
-        <div style={{ marginTop: 16 }}>
-          <button className="theme-toggle" type="submit" disabled={loading} aria-busy={loading}>
+        <div style={{ marginTop: 'var(--spacing-4)' }}>
+          <button className="btn-primary" type="submit" disabled={loading} aria-busy={loading}>
             {loading ? 'Logging in...' : 'Login'}
           </button>
         </div>
-        {message && <p role="status" style={{ color: 'green', marginTop: 12 }}>{message}</p>}
-        {error && <p role="alert" style={{ color: 'red', marginTop: 12 }}>{error}</p>}
+        {message && <p role="status" style={{ color: '#166534', marginTop: 12 }}>{message}</p>}
+        {error && <p role="alert" style={{ color: '#991b1b', marginTop: 12 }}>{error}</p>}
       </form>
     </section>
   );

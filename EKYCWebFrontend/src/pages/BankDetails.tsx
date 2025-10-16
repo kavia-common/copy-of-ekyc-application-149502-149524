@@ -3,7 +3,9 @@ import { Input } from '../components/Form/Input';
 import { IfscHelp } from '../components/Form/IfscHelp';
 import { getBankDetails, updateBankDetails, lookupIfsc } from '../services/api';
 
-// PUBLIC_INTERFACE
+/**
+ * PUBLIC_INTERFACE
+ */
 export default function BankDetails(): React.ReactElement {
   /** Bank details page: account number confirmation, IFSC validation and save via API. */
   const [accountNumber, setAccountNumber] = useState('');
@@ -46,7 +48,7 @@ export default function BankDetails(): React.ReactElement {
       if (/^[A-Z]{4}0[A-Z0-9]{6}$/.test(ifsc)) {
         const res = await lookupIfsc(ifsc);
         if (res.ok) {
-          setBranchInfo(res.data?.branch || 'Branch found');
+          setBranchInfo(res.data?.branch || 'Demo Branch, Mumbai');
         } else {
           setBranchInfo(null);
         }
@@ -110,9 +112,9 @@ export default function BankDetails(): React.ReactElement {
   };
 
   return (
-    <section aria-labelledby="bank-title" style={{ padding: 24 }}>
-      <h1 id="bank-title">Bank Details</h1>
-      <form onSubmit={onSubmit} noValidate>
+    <section aria-labelledby="bank-title" className="form-section">
+      <h1 id="bank-title" className="form-heading">Bank Details</h1>
+      <form onSubmit={onSubmit} className="form-grid" noValidate>
         <Input
           id="accountNumber"
           label="Account Number"
@@ -151,7 +153,7 @@ export default function BankDetails(): React.ReactElement {
           type="text"
           required
         />
-        <div style={{ marginTop: 12 }}>
+        <div style={{ marginTop: 'var(--spacing-3)' }}>
           <label>
             <input
               type="checkbox"
@@ -170,7 +172,7 @@ export default function BankDetails(): React.ReactElement {
           required
           maxLength={250}
         />
-        <div style={{ marginTop: 12 }}>
+        <div style={{ marginTop: 'var(--spacing-3)' }}>
           <label>
             <input
               type="checkbox"
@@ -190,13 +192,13 @@ export default function BankDetails(): React.ReactElement {
             required
           />
         )}
-        <div style={{ marginTop: 16 }}>
-          <button className="theme-toggle" type="submit" disabled={loading} aria-busy={loading}>
+        <div style={{ marginTop: 'var(--spacing-4)' }}>
+          <button className="btn-primary" type="submit" disabled={loading} aria-busy={loading}>
             {loading ? 'Saving...' : 'Save Bank Details'}
           </button>
         </div>
-        {status && <p role="status" style={{ color: 'green', marginTop: 12 }}>{status}</p>}
-        {error && <p role="alert" style={{ color: 'red', marginTop: 12 }}>{error}</p>}
+        {status && <p role="status" style={{ color: '#166534', marginTop: 12 }}>{status}</p>}
+        {error && <p role="alert" style={{ color: '#991b1b', marginTop: 12 }}>{error}</p>}
       </form>
     </section>
   );

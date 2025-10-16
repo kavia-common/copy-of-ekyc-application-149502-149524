@@ -1,36 +1,24 @@
 import React from 'react';
-import { Routes, Route, Link, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import BankDetails from './pages/BankDetails';
+import SideNavLayout from './layout/SideNavLayout';
 import './App.css';
+import './theme.css';
 
 // PUBLIC_INTERFACE
 export default function App(): React.ReactElement {
-  /** App root: navigation and route registration for Register, Login and BankDetails pages. */
+  /** App root: uses SideNavLayout shell and registers routes. */
   return (
-    <div className="App">
-      <header className="App-header" role="banner" aria-label="EKYC Header">
-        <nav className="navbar" aria-label="Primary">
-          <ul style={{ display: 'flex', gap: 16, listStyle: 'none', padding: 0 }}>
-            <li><Link className="App-link" to="/register">Register</Link></li>
-            <li><Link className="App-link" to="/login">Login</Link></li>
-            <li><Link className="App-link" to="/bank">Bank Details</Link></li>
-          </ul>
-        </nav>
-      </header>
-      <main role="main" className="container" aria-live="polite">
-        <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginBottom: 8 }}>
-          Use the navigation above to switch between pages.
-        </div>
-        <Routes>
-          <Route path="/" element={<Navigate to="/register" replace />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/bank" element={<BankDetails />} />
-          <Route path="*" element={<div style={{ padding: 24 }}>Not Found</div>} />
-        </Routes>
-      </main>
-    </div>
+    <SideNavLayout>
+      <Routes>
+        <Route path="/" element={<div>Welcome to EKYC Dashboard</div>} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/bank" element={<BankDetails />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </SideNavLayout>
   );
 }

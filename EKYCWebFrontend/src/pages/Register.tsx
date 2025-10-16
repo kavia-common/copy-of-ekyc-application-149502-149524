@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { Input } from '../components/Form/Input';
 import { registerUser } from '../services/api';
 
-// PUBLIC_INTERFACE
+/**
+ * PUBLIC_INTERFACE
+ */
 export default function Register(): React.ReactElement {
   /** Registration page: validates email, mobile and password; posts to backend via registerUser. */
   const [email, setEmail] = useState('');
@@ -18,7 +20,7 @@ export default function Register(): React.ReactElement {
     setError(null);
     setMessage(null);
 
-    if (!/^\S+@\S+\.\S+$/.test(email) || email.length > 50) {
+    if (!/\S+@\S+\.\S+/.test(email) || email.length > 50) {
       setError('Please enter a valid email (max 50 chars).');
       return;
     }
@@ -51,9 +53,9 @@ export default function Register(): React.ReactElement {
   };
 
   return (
-    <section aria-labelledby="register-title" style={{ padding: 24 }}>
-      <h1 id="register-title">Register</h1>
-      <form onSubmit={onSubmit} noValidate>
+    <section aria-labelledby="register-title" className="form-section">
+      <h1 id="register-title" className="form-heading">Register</h1>
+      <form onSubmit={onSubmit} className="form-grid" noValidate>
         <Input
           id="email"
           label="Email"
@@ -92,13 +94,13 @@ export default function Register(): React.ReactElement {
           required
         />
 
-        <div style={{ marginTop: 16 }}>
-          <button className="theme-toggle" type="submit" disabled={loading} aria-busy={loading}>
+        <div style={{ marginTop: 'var(--spacing-4)' }}>
+          <button className="btn-primary" type="submit" disabled={loading} aria-busy={loading}>
             {loading ? 'Registering...' : 'Register'}
           </button>
         </div>
-        {message && <p role="status" style={{ color: 'green', marginTop: 12 }}>{message}</p>}
-        {error && <p role="alert" style={{ color: 'red', marginTop: 12 }}>{error}</p>}
+        {message && <p role="status" style={{ color: '#166534', marginTop: 12 }}>{message}</p>}
+        {error && <p role="alert" style={{ color: '#991b1b', marginTop: 12 }}>{error}</p>}
       </form>
     </section>
   );
