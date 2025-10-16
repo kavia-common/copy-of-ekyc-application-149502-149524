@@ -1,5 +1,6 @@
-// jest-dom adds custom jest matchers for asserting on DOM nodes.
-// allows you to do things like:
-// expect(element).toHaveTextContent(/react/i)
-// learn more: https://github.com/testing-library/jest-dom
+/**
+ * Global test setup for CRA
+ * - Adds @testing-library/jest-dom matchers like toBeInTheDocument, toHaveTextContent, etc.
+ * TypeScript awareness is provided via tsconfig "types" so TS tests recognize matchers.
+ */
 import '@testing-library/jest-dom';
