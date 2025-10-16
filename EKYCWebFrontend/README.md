@@ -11,6 +11,15 @@ This project provides a minimal React template with a clean, modern UI and minim
 
 ## Getting Started
 
+Environment:
+- Set REACT_APP_API_BASE in a .env file (see .env.example). If not set, the app defaults to http://localhost:3001 and shows a warning banner.
+
+Troubleshooting blank screen:
+- Ensure only src/index.tsx exists as the entrypoint (no conflicting src/index.js).
+- Ensure only src/App.tsx exists (no App.js re-exports).
+- Check the browser console; an ErrorBoundary now surfaces runtime errors.
+- Verify public/index.html has a root element with id="root".
+
 In the project directory, you can run:
 
 ### `npm start`

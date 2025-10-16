@@ -20,6 +20,9 @@ export default function App(): React.ReactElement {
         </nav>
       </header>
       <main role="main" className="container" aria-live="polite">
+        <div style={{ fontSize: 12, color: 'var(--text-secondary)', marginBottom: 8 }}>
+          Use the navigation above to switch between pages.
+        </div>
         <Routes>
           <Route path="/" element={<Navigate to="/register" replace />} />
           <Route path="/register" element={<Register />} />

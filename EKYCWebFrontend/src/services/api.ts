@@ -4,14 +4,22 @@ type ApiResult<T> = { ok: true; data: T } | { ok: false; error?: string };
 
 async function request<T>(path: string, init?: RequestInit): Promise<ApiResult<T>> {
   try {
+    // eslint-disable-next-line no-console
+    if (!process.env.REACT_APP_API_BASE) console.warn('REACT_APP_API_BASE not set; defaulting to http://localhost:3001');
     const res = await fetch(`${API_BASE}${path}`, {
       headers: { 'Content-Type': 'application/json', ...(init?.headers || {}) },
       ...init
     });
     const text = await res.text();
-    const data = text ? JSON.parse(text) : null;
+    let data: any = null;
+    try {
+      data = text ? JSON.parse(text) : null;
+    } catch {
+      // Non-JSON response, keep as text
+      data = text as any;
+    }
     if (!res.ok) {
-      return { ok: false, error: data?.message || `HTTP ${res.status}` };
+      return { ok: false, error: (data && (data.message || data.error)) || `HTTP ${res.status}` };
     }
     return { ok: true, data };
   } catch (e: any) {
